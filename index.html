@@ -5,49 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
     <title>¿Quieres ser mi Valentín?</title>
 
     <style>
         body {
-            margin: 0;
-            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: #ffffff;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
-            overflow: hidden;
         }
 
         .container {
             text-align: center;
-            position: relative;
         }
 
         img {
             max-width: 90%;
             height: auto;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        h1 {
-            font-size: 2.2em;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 22px;
+            padding: 15px 25px;
+            font-size: 20px;
             margin: 10px;
-            border-radius: 12px;
+            border-radius: 10px;
             border: none;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
         }
 
         #siBtn {
@@ -58,45 +44,27 @@
         #noBtn {
             background-color: #FF5733;
             color: white;
-            position: absolute;
         }
 
         #messageContainer {
-            font-size: 32px;
-            color: #ff004c;
-            margin-top: 20px;
-            animation: pulse 0.6s infinite alternate;
+            font-size: 30px;
+            color: red;
+            animation: pulse 0.5s infinite alternate;
         }
 
         @keyframes pulse {
             from { transform: scale(1); }
             to { transform: scale(1.2); }
         }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
     </style>
 </head>
 
 <body>
-
 <div class="container">
 
-    <!-- Música -->
-    <audio id="music" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9c1b6f2f6e.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
-    </audio>
+    <img id="mainImg" src="https://i.pinimg.com/736x/d1/b2/09/d1b209ce0dbda08cd0bf26a2bcd8ea2c.jpg">
 
-    <!-- Imagen principal -->
-    <img id="mainImg"
-         src="https://i.pinimg.com/736x/d1/b2/09/d1b209ce0dbda08cd0bf26a2bcd8ea2c.jpg"
-         alt="Romance">
-
-    <h1 id="question">¿Quieres ser mi VALENTÍN? 💘</h1>
-
+    <h1 id="question">¿Quieres ser mi VALENTÍN?</h1>
     <div id="messageContainer" style="display:none;"></div>
 
     <button id="siBtn">Sí 💖</button>
@@ -105,57 +73,25 @@
 </div>
 
 <script>
-    const siBtn = document.getElementById("siBtn");
-    const noBtn = document.getElementById("noBtn");
-    const music = document.getElementById("music");
-    const mainImg = document.getElementById("mainImg");
-    const message = document.getElementById("messageContainer");
-    const question = document.getElementById("question");
+let noCount = 0;
 
-    const sadGifs = [
-        "https://i.pinimg.com/736x/aa/b9/01/aab9012fecab26a1e74942e638ea3746.jpg",
-        "https://i.pinimg.com/736x/f0/db/89/f0db89944ed03e4328337c5f9d42a3a3.jpg",
-        "https://i.pinimg.com/736x/a2/21/0c/a2210c96613f918ec43f2ebbe4996d79.jpg"
-    ];
+document.getElementById("siBtn").onclick = () => {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("siBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+    document.getElementById("messageContainer").style.display = "block";
+    document.getElementById("messageContainer").innerHTML =
+        "¡Sabía que dirías que sí! 💕 Que vivan los novios 💍";
 
-    let gifIndex = 0;
+    document.getElementById("mainImg").src =
+        "https://i.pinimg.com/originals/88/14/9b/88149b0400750578f4d07d9bc3fb0fee.gif";
+};
 
-    function startMusic() {
-        if (music.paused) {
-            music.play();
-        }
-    }
-
-    siBtn.addEventListener("click", () => {
-        startMusic();
-
-        document.body.style.background =
-            "linear-gradient(135deg, #ff9a9e, #fad0c4)";
-
-        question.style.display = "none";
-        siBtn.style.display = "none";
-        noBtn.style.display = "none";
-
-        message.style.display = "block";
-        message.innerHTML =
-            "💍✨ Sabía que dirías que SÍ ✨💍<br>Te elijo hoy y siempre ❤️";
-
-        mainImg.src =
-            "https://i.pinimg.com/originals/88/14/9b/88149b0400750578f4d07d9bc3fb0fee.gif";
-    });
-
-    noBtn.addEventListener("mouseover", () => {
-        startMusic();
-
-        const x = Math.random() * (window.innerWidth - 120);
-        const y = Math.random() * (window.innerHeight - 60);
-
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-
-        mainImg.src = sadGifs[gifIndex];
-        gifIndex = (gifIndex + 1) % sadGifs.length;
-    });
+document.getElementById("noBtn").onclick = () => {
+    noCount++;
+    document.getElementById("noBtn").innerHTML =
+        noCount < 5 ? "¿Segura? 🥺" : "Ya no tienes escapatoria 😏";
+};
 </script>
 
 </body>
