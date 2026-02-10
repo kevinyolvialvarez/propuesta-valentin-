@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>¿Quieres ser mi Valentín?</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #siBtn {
+            background-color: #009705;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #FF5733;
+            color: white;
+        }
+
+        #messageContainer {
+            font-size: 30px;
+            color: red;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <img id="mainImg" src="https://i.pinimg.com/736x/d1/b2/09/d1b209ce0dbda08cd0bf26a2bcd8ea2c.jpg">
+
+    <h1 id="question">¿Quieres ser mi VALENTÍN?</h1>
+    <div id="messageContainer" style="display:none;"></div>
+
+    <button id="siBtn">Sí 💖</button>
+    <button id="noBtn">No 😢</button>
+
+</div>
+
+<script>
+let noCount = 0;
+
+document.getElementById("siBtn").onclick = () => {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("siBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+    document.getElementById("messageContainer").style.display = "block";
+    document.getElementById("messageContainer").innerHTML =
+        "¡Sabía que dirías que sí! 💕 Que vivan los novios 💍";
+
+    document.getElementById("mainImg").src =
+        "https://i.pinimg.com/originals/88/14/9b/88149b0400750578f4d07d9bc3fb0fee.gif";
+};
+
+document.getElementById("noBtn").onclick = () => {
+    noCount++;
+    document.getElementById("noBtn").innerHTML =
+        noCount < 5 ? "¿Segura? 🥺" : "Ya no tienes escapatoria 😏";
+};
+</script>
+
+</body>
+</html>
